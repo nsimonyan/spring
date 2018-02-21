@@ -1,0 +1,214 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Annotation wiring is not turned on in the Spring container by default.
+	 So, before we can use annotation-based wiring, we will need to enable it in our Spring 
+	 configuration file. 
+	    <context:annotation-config/>
+	 -->
+
+  <!--   <bean id = "helloWorld" class = "org.testproject.spring.basic.HelloWorld">
+      <property name = "message" value = "Hello World!"/>
+   </bean>
+
+   <bean id = "helloWorldSingleton" class = "org.testproject.spring.singleton.HelloWorldSingleton" scope = "singleton">
+      <property name = "message" value = "Hello World singleton!"/>
+   </bean>
+   
+   <bean id = "helloWorldPrototype" class = "org.testproject.spring.prototype.HelloWorldPrototype" scope = "prototype">
+      <property name = "message" value = "Hello World prototype!"/>
+   </bean>
+
+   <bean id = "helloWorldInit" class = "org.testproject.spring.init.HelloWorldInit" init-method = "init">
+      <property name = "message" value = "Hello World Init!"/>
+   </bean>
+   
+   <bean id = "helloWorldDestroy" class = "org.testproject.spring..destroy.HelloWorldDestroy" destroy-method = "destroy">
+      <property name = "message" value = "Hello World Destroy!"/>
+   </bean>
+   
+      <bean id = "helloWorldPostProcessor" class = "org.testproject.spring.beanpostprocessor.HelloWorldPostProcessor"
+      init-method = "init" destroy-method = "destroy">
+      <property name = "message" value = "Hello World PostProcessor!"/>
+   </bean>
+
+   <bean id = "helloWorldInheritance" class = "org.testproject.spring.inheritance.HelloWorldInheritance">
+      <property name = "message1" value = "Hello World!"/>
+      <property name = "message2" value = "Hello Second World!"/>
+   </bean>
+
+   <bean id =" helloIndia" class = "org.testproject.spring.inheritance.HelloWorldIndia" parent = "helloWorldInheritance">
+      <property name = "message1" value = "Hello India!"/>
+      <property name = "message3" value = "Namaste India!"/>
+   </bean>
+   -->
+      <!-- Definition for textEditor bean -->
+  <!--   <bean id = "textEditor" class = "org.testproject.spring.dependencyinjection.TextEditor">
+      <constructor-arg ref = "spellChecker"/>
+   </bean>
+
+   <bean id = "spellChecker" class = "org.testproject.spring.dependencyinjection.SpellChecker"></bean>
+   -->
+    <!-- In case you are passing a reference to an object, you need to use ref attribute 
+	 	  <constructor-arg ref = "secondparamcanbehere"/>
+	 	  if  passing a value directly then you should use value attribute as shown above.
+	 	  <constructor-arg type = "int" value = "2001"/>
+	      <constructor-arg type = "java.lang.String" value = "Naira"/>
+	       use the index attribute to specify explicitly the index of constructor arguments
+	      <constructor-arg index = "0" value = "2001"/>
+	      <constructor-arg index = "1" value = "Naira"/>
+	      
+	      Setter-based DI is accomplished by the container calling setter methods on your beans
+	      after invoking a no-argument constructor or no-argument static factory method to instantiate
+	      your bean.Thus, a <bean/> element inside the <property/> or <constructor-arg/> 
+	      elements is called inner bean and it is shown below.
+	      
+	      <bean id = "textEditor" class = "org.testproject.spring.dependencyinjection.TextEditor">
+		      <property name = "spellChecker" ref = "spellChecker"/>
+		  </bean>
+	     <bean id = "spellChecker" class = "org.testproject.spring.dependencyinjection.SpellChecker"></bean>
+	  
+	  
+	     <bean id = "textEditor" class = "com.tutorialspoint.TextEditor">
+		      <property name = "spellChecker">
+		         <bean id = "spellChecker" class = "org.testproject.spring.dependencyinjection.SpellChecker"/>
+		      </property>
+		 </bean>
+	  -->
+	   
+	   <bean id = "javaCollection" class = "org.testproject.spring.dependencyinjection.plural.JavaCollection">
+      
+      <!-- results in a setAddressList(java.util.List) call -->
+      <property name = "addressList">
+         <list>
+            <value>INDIA</value>
+            <value>Pakistan</value>
+            <value>USA</value>
+            <value>USA</value>
+         </list>
+      </property>
+
+      <!-- results in a setAddressSet(java.util.Set) call -->
+      <property name = "addressSet">
+         <set>
+            <value>INDIA</value>
+            <value>Pakistan</value>
+            <value>USA</value>
+            <value>USA</value>
+         </set>
+      </property>
+
+      <!-- results in a setAddressMap(java.util.Map) call -->
+      <property name = "addressMap">
+         <map>
+            <entry key = "1" value = "INDIA"/>
+            <entry key = "2" value = "Pakistan"/>
+            <entry key = "3" value = "USA"/>
+            <entry key = "4" value = "USA"/>
+         </map>
+      </property>
+      
+      <!-- results in a setAddressProp(java.util.Properties) call -->
+      <property name = "addressProp">
+         <props>
+            <prop key = "one">INDIA</prop>
+            <prop key = "one">INDIA</prop>
+            <prop key = "two">Pakistan</prop>
+            <prop key = "three">USA</prop>
+            <prop key = "four">USA</prop>
+         </props>
+      </property>
+   </bean>
+      
+      <!-- 
+      	use
+      	<ref bean = "address1"/>
+      	if need to pass refference
+       -->
+      
+      <!-- pass empty value
+    	<bean id = "..." class = "exampleBean">
+	   		<property name = "email" value = ""/>
+		</bean>
+      
+      If you need to pass a NULL value, then you can pass it as follows −
+
+		<bean id = "..." class = "exampleBean">
+		   <property name = "email"><null/></property>
+		</bean>
+       -->
+       <!-- AUTOWIRE -->
+     <bean autowire="byName" class="org.testproject.spring.dependencyinjection.autowiring.byname.Triangle" id="triangle">
+	 </bean>
+	 
+	 <bean class="org.testproject.spring.dependencyinjection.autowiring.byname.Point" id="pointA">
+	  <property name="x" value="0"></property>
+	  <property name="y" value="0"></property>
+	 </bean>
+	  
+	 <bean class="org.testproject.spring.dependencyinjection.autowiring.byname.Point" id="pointB">
+	  <property name="x" value="-20"></property>
+	  <property name="y" value="0"></property>
+	 </bean>
+	  
+	 <bean class="org.testproject.spring.dependencyinjection.autowiring.byname.Point" id="pointC">
+	  <property name="x" value="20"></property>
+	  <property name="y" value="0"></property>
+	 </bean>
+	 
+	 <bean autowire="byType" class="org.testproject.spring.dependencyinjection.autowiring.byType.Circle" id="circle">
+	 </bean>
+
+	<bean autowire="constructor" 
+			class="org.testproject.spring.dependencyinjection.autowiring.constructor.Circle" 
+			id="circleConstructor">
+	</bean>
+
+	 <bean class="org.testproject.spring.dependencyinjection.autowiring.byType.Point" id="center">
+	  <property name="x" value="0"></property>
+	  <property name="y" value="0"></property>
+	 </bean>
+	 
+	    <!-- Definition for student bean -->
+   <bean id = "student" class = "org.testproject.spring.dependencyinjection.autowiring.anotation">
+      <property name = "name" value = "Naira" />
+
+      <!-- try without passing age and check the result, it will throw an exception -->
+      <!-- property name = "age"  value = "11"-->
+   </bean>
+   
+      <!-- Definition for textEditor bean without constructor-arg  -->
+   <bean id = "textEditorAutowiring" class = "org.testproject.spring.dependencyinjection.autowiring.anotation.TextEditor"></bean>
+
+   <!-- Definition for spellChecker bean -->
+   <bean id = "spellChecker" class = "org.testproject.spring.dependencyinjection.autowiring.anotation.SpellChecker"></bean>
+   
+   
+   <!-- Definition for profile bean -->
+   <bean id = "profile" class = "org.testproject.spring.dependencyinjection.autowiring.anotation.Profile"></bean>
+
+   <!-- Definition for student1 bean -->
+   <bean id = "student1" class = "org.testproject.spring.dependencyinjection.autowiring.anotation.Student">
+      <property name = "name" value = "Naira" />
+      <property name = "age" value = "27"/>
+   </bean>
+
+   <!-- Definition for student2 bean -->
+   <bean id = "student2" class = "org.testproject.spring.dependencyinjection.autowiring.anotation.Student">
+      <property name = "name" value = "Nuha" />
+      <property name = "age" value = "2"/>
+   </bean>
+   
+   <bean id = "helloWorld" class = "org.testproject.spring.eventhandling.HelloWorld">
+      <property name = "message" value = "Hello World!"/>
+   </bean>
+
+   <bean id = "cStartEventHandler" class = "org.testproject.spring.eventhandling.CStartEventHandler"/>
+   <bean id = "cStopEventHandler" class = "org.testproject.spring.eventhandling.CStopEventHandler"/>
+
+   
+</beans>
